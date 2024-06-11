@@ -7,6 +7,67 @@
     <title>Skidaway - Single Page</title>
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.6/build/pure-min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .header {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header a {
+            color: #fff;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+
+        .section {
+            padding: 4rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .section h2 {
+            color: #ffcc00;
+        }
+
+        .section p {
+            color: #ccc;
+        }
+
+        .image-text {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .image-text img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer {
+            background: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .pure-button-primary {
+            background: #ffcc00;
+            color: black;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,8 +80,11 @@
         <a href="#contact">Contact</a>
     </header>
     <section id="home" class="section">
-        <h2>Welcome to Skidaway</h2>
-        <p>Welcome to our website. Learn more about our mission, the problems we solve, and our values.</p>
+        <div class="image-text">
+            <img src="your-image-url.jpg" alt="Skidaway">
+            <h2>Welcome to Skidaway</h2>
+            <p>Welcome to our website. Learn more about our mission, the problems we solve, and our values.</p>
+        </div>
     </section>
     <section id="mission" class="section">
         <h2>Our Mission</h2>
@@ -48,7 +112,7 @@
     </section>
     <section id="contact" class="section">
         <h2>Contact Us</h2>
-        <form action="https://formspree.io/YOUREMAIL" method="POST" class="pure-form pure-form-stacked">
+        <form action="https://formspree.io/f/xyyqvnvq" method="POST" class="pure-form pure-form-stacked">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" class="pure-input-1" required>
             <button type="submit" class="pure-button pure-button-primary">Submit</button>
