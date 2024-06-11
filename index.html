@@ -11,6 +11,9 @@
         body {
             background-color: #000;
             color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
 
         .header {
@@ -33,14 +36,27 @@
         .section {
             padding: 4rem 1rem;
             margin-top: 3rem;
+            text-align: center;
         }
 
         .section h2 {
-            color: #ffcc00;
+            color: #ff6600;
         }
 
         .section p {
             color: #ccc;
+        }
+
+        .columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+            padding: 1rem;
         }
 
         .image-text {
@@ -64,7 +80,7 @@
         }
 
         .pure-button-primary {
-            background: #ffcc00;
+            background: #ff6600;
             color: black;
         }
     </style>
@@ -74,9 +90,9 @@
     <header class="header">
         <a href="#home">Home</a>
         <a href="#mission">Our Mission</a>
-        <a href="#problem">Problem</a>
         <a href="#values">Values</a>
         <a href="#about">About</a>
+        <a href="#problem">Problem</a>
         <a href="#contact">Contact</a>
     </header>
     <section id="home" class="section">
@@ -91,33 +107,41 @@
         <p>Skidaway is reimagining the cyber security industry. We remain in stealth and are working with large design
             partners currently.</p>
     </section>
-    <section id="problem" class="section">
-        <h2>The Problem</h2>
-        <p>Cyber security spending now exceeds $200bn per year. And the costs of cyber attacks now exceed $6trn per
-            year. Meanwhile the cyber security industry, in general, takes a traditional approach to business, selling
-            customers top down into lock-in based products and business models.</p>
-    </section>
-    <section id="values" class="section">
-        <h2>Our Values</h2>
-        <p>At Skidaway, we strive to be extremely transparent and fact-based in our approaches. We are also not afraid
-            to think differently or to poke fun at ourselves our crazy ideas. We are also deeply aware of how crucial it
-            is that, together, we start to turn back the tide of increasingly sophisticated cyber attacks.</p>
-    </section>
-    <section id="about" class="section">
-        <h2>About Us</h2>
-        <p>Skidaway was founded by a team with diverse experiences including having built security operations teams and
-            broadly deployed enterprise data infrastructure solutions. We came together in 2023 to reimagine cyber
-            security from first principles, committed to changing the game to give more insight and freedom of choice to
-            enterprises while building solutions that adversaries will find are always one step ahead of them.</p>
-    </section>
-    <section id="contact" class="section">
-        <h2>Contact Us</h2>
-        <form action="https://formspree.io/f/xyyqvnvq" method="POST" class="pure-form pure-form-stacked">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="pure-input-1" required>
-            <button type="submit" class="pure-button pure-button-primary">Submit</button>
-        </form>
-    </section>
+    <div class="columns">
+        <div class="column">
+            <section id="values" class="section">
+                <h2>Our Values</h2>
+                <p>At Skidaway, we strive to be extremely transparent and fact-based in our approaches. We are also not
+                    afraid to think differently or to poke fun at ourselves our crazy ideas. We are also deeply aware of
+                    how crucial it is that, together, we start to turn back the tide of increasingly sophisticated cyber
+                    attacks.</p>
+            </section>
+            <section id="about" class="section">
+                <h2>About Us</h2>
+                <p>Skidaway was founded by a team with diverse experiences including having built security operations
+                    teams and broadly deployed enterprise data infrastructure solutions. We came together in 2023 to
+                    reimagine cyber security from first principles, committed to changing the game to give more insight
+                    and freedom of choice to enterprises while building solutions that adversaries will find are always
+                    one step ahead of them.</p>
+            </section>
+        </div>
+        <div class="column">
+            <section id="problem" class="section">
+                <h2>The Problem</h2>
+                <p>Cyber security spending now exceeds $200bn per year. And the costs of cyber attacks now exceed $6trn
+                    per year. Meanwhile the cyber security industry, in general, takes a traditional approach to
+                    business, selling customers top down into lock-in based products and business models.</p>
+            </section>
+            <section id="contact" class="section">
+                <h2>Contact Us</h2>
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="pure-form pure-form-stacked">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="pure-input-1" required>
+                    <button type="submit" class="pure-button pure-button-primary">Submit</button>
+                </form>
+            </section>
+        </div>
+    </div>
     <footer class="footer">
         <p>&copy; 2024 Skidaway</p>
     </footer>
