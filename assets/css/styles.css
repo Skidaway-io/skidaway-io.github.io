@@ -10,6 +10,8 @@ body {
     color: #fff;
     background-image: url('https://www.transparenttextures.com/patterns/black-linen.png');
     /* Texture background */
+    background-size: cover;
+    /* Ensure texture covers the entire background */
 }
 
 /* Header Styles */
