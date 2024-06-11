@@ -67,7 +67,7 @@ footer {
 /* Button Styles */
 button,
 .button {
-    background-color: #ffcc00;
+    background-color: #ff6600;
     color: #000;
     border: none;
     padding: 0.5rem 1rem;
@@ -82,7 +82,7 @@ button,
 
 button:hover,
 .button:hover {
-    background-color: #e6b800;
+    background-color: #ff6600;
 }
 
 /* Flexbox for Layout */
