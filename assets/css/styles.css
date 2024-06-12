@@ -88,7 +88,7 @@ body {
 .image {
     background: url('https://raw.githubusercontent.com/Skidaway-io/skidaway-io.github.io/main/iStock-1438736329.jpg') no-repeat center center;
     background-size: cover;
-    height: 300px;
+    height: 350px;
     /* Adjust height as needed */
     display: flex;
     align-items: center;
