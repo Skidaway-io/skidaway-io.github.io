@@ -52,19 +52,19 @@ body {
 }
 
 .values h2 {
-    color: #00cc66;
+    color: #cc6900;
 }
 
 .about h2 {
-    color: #0099cc;
+    color: #cc6900;
 }
 
 .problem h2 {
-    color: #cc0099;
+    color: #cc6900;
 }
 
 .contact h2 {
-    color: #cc9900;
+    color: #cc6900;
 }
 
 .section p {
@@ -88,13 +88,13 @@ body {
 .image {
     background: url('https://raw.githubusercontent.com/Skidaway-io/skidaway-io.github.io/main/iStock-1438736329.jpg') no-repeat center center;
     background-size: cover;
-    height: 500px;
+    height: 400px;
     /* Adjust height as needed */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    opacity: 0.5;
+    opacity: 0.6;
     /* Less distinct image */
 }
 
