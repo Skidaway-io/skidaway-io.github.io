@@ -27,7 +27,7 @@ body {
 }
 
 .header nav a:hover {
-    color: #cc6600;
+    color: #ffcc00;
 }
 
 .section {
@@ -37,7 +37,7 @@ body {
 }
 
 .mission h2 {
-    color: #f4f0ed;
+    color: #ff6600;
     font-size: 2.5rem;
     /* Larger font size for the mission heading */
     text-shadow: 2px 2px 4px #000;
@@ -45,26 +45,26 @@ body {
 }
 
 .mission p {
-    font-size: 2.0rem;
+    font-size: 1.25rem;
     /* Larger font size for the mission text */
     text-shadow: 1px 1px 2px #000;
     /* Add text shadow for better readability */
 }
 
 .values h2 {
-    color: #cc6600;
+    color: #00cc66;
 }
 
 .about h2 {
-    color: #cc6600;
+    color: #0099cc;
 }
 
 .problem h2 {
-    color: #cc6600;
+    color: #cc0099;
 }
 
 .contact h2 {
-    color: #cc6600;
+    color: #cc9900;
 }
 
 .section p {
@@ -88,13 +88,13 @@ body {
 .image {
     background: url('https://raw.githubusercontent.com/Skidaway-io/skidaway-io.github.io/main/iStock-1438736329.jpg') no-repeat center center;
     background-size: cover;
-    height: 350px;
+    height: 500px;
     /* Adjust height as needed */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    opacity: 0.6;
+    opacity: 0.5;
     /* Less distinct image */
 }
 
@@ -102,7 +102,7 @@ body {
     background: rgba(0, 0, 0, 0.7);
     /* More distinct semi-transparent background for better readability */
     color: #fff;
-    padding: 1rem;
+    padding: 2rem;
     width: 100%;
     height: 100%;
     /* Cover entire image section */
@@ -120,6 +120,28 @@ body {
 }
 
 .pure-button-primary {
-    background: #ffcc00;
+    background: #ff6600;
+    /* Change button color */
     color: black;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pure-button-primary:hover {
+    background: #e65c00;
+    /* Darken button color on hover */
+    color: white;
+}
+
+.pure-form input[type="email"] {
+    background-color: #222;
+    /* Dim white of the email form */
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 5px;
+    /* Adjust border radius */
+    padding: 0.5rem;
+}
+
+.pure-form input[type="email"]::placeholder {
+    color: #bbb;
 }
