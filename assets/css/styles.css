@@ -37,7 +37,7 @@ body {
 }
 
 .mission h2 {
-    color: #ff6600;
+    color: #e5c3a9;
     font-size: 2.5rem;
     /* Larger font size for the mission heading */
     text-shadow: 2px 2px 4px #000;
@@ -88,7 +88,7 @@ body {
 .image {
     background: url('https://raw.githubusercontent.com/Skidaway-io/skidaway-io.github.io/main/iStock-1438736329.jpg') no-repeat center center;
     background-size: cover;
-    height: 500px;
+    height: 300px;
     /* Adjust height as needed */
     display: flex;
     align-items: center;
