@@ -1,8 +1,9 @@
 body {
+    background-color: #000;
+    color: #fff;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
 }
 
 .header {
@@ -25,14 +26,60 @@ body {
 .section {
     padding: 4rem 1rem;
     margin-top: 3rem;
+    text-align: center;
 }
 
-.section h2 {
-    color: #333;
+.home h2 {
+    color: #ffcc00;
+}
+
+.mission h2 {
+    color: #ff6600;
+}
+
+.values h2 {
+    color: #00cc66;
+}
+
+.about h2 {
+    color: #0099cc;
+}
+
+.problem h2 {
+    color: #cc0099;
+}
+
+.contact h2 {
+    color: #cc9900;
 }
 
 .section p {
-    color: #666;
+    color: #ccc;
+}
+
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.column {
+    flex: 1;
+    min-width: 300px;
+    padding: 1rem;
+}
+
+.image-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.image-text img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
 }
 
 .footer {
@@ -43,6 +90,6 @@ body {
 }
 
 .pure-button-primary {
-    background: #1f8dd6;
-    color: white;
+    background: #ffcc00;
+    color: black;
 }
