@@ -30,7 +30,7 @@ body {
 }
 
 .home h2 {
-    color: #ffcc00;
+    color: #b0afab;
 }
 
 .mission h2 {
@@ -38,19 +38,19 @@ body {
 }
 
 .values h2 {
-    color: #00cc66;
+    color: #0a9650;
 }
 
 .about h2 {
-    color: #0099cc;
+    color: #148db59c;
 }
 
 .problem h2 {
-    color: #cc0099;
+    color: #cc00999e;
 }
 
 .contact h2 {
-    color: #cc9900;
+    color: #a37f11;
 }
 
 .section p {
@@ -74,12 +74,24 @@ body {
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    color: #fff;
 }
 
-.image-text img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 1rem;
+.image {
+    background: url('https://raw.githubusercontent.com/Skidaway-io/skidaway-io.github.io/main/iStock-1438736329.jpg') no-repeat center center;
+    background-size: cover;
+    height: 400px;
+    /* Adjust height as needed */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-text h2,
+.image-text p {
+    background: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background for better readability */
+    padding: 1rem;
 }
 
 .footer {
