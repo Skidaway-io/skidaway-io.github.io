@@ -96,7 +96,10 @@ body {
     position: relative;
     opacity: 0.6;
     /* Less distinct image */
+    margin-bottom: 0;
+    /* Reduce space below the image */
 }
+
 
 .overlay {
     background: rgba(0, 0, 0, 0.7);
