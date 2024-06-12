@@ -1,5 +1,5 @@
 body {
-    background-color: #0b0425;
+    background-color: #111;
     /* Darker background closer to the image's tone */
     color: #fff;
     font-family: Arial, sans-serif;
@@ -40,27 +40,31 @@ body {
     color: #ff6600;
     font-size: 2.5rem;
     /* Larger font size for the mission heading */
+    text-shadow: 2px 2px 4px #000;
+    /* Add text shadow for better readability */
 }
 
 .mission p {
     font-size: 1.25rem;
     /* Larger font size for the mission text */
+    text-shadow: 1px 1px 2px #000;
+    /* Add text shadow for better readability */
 }
 
 .values h2 {
-    color: #00cc6686;
+    color: #00cc66;
 }
 
 .about h2 {
-    color: #0099cc5f;
+    color: #0099cc;
 }
 
 .problem h2 {
-    color: #76145e;
+    color: #cc0099;
 }
 
 .contact h2 {
-    color: #816511;
+    color: #cc9900;
 }
 
 .section p {
@@ -71,6 +75,8 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+    margin-top: 0;
+    /* Eliminate space between image and columns */
 }
 
 .column {
