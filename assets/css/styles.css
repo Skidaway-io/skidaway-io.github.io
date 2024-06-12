@@ -1,5 +1,5 @@
 body {
-    background-color: #111;
+    background-color: #0b0425;
     /* Darker background closer to the image's tone */
     color: #fff;
     font-family: Arial, sans-serif;
@@ -23,10 +23,11 @@ body {
     margin: 0 1rem;
     text-decoration: none;
     font-size: 0.9rem;
+    transition: color 0.3s;
 }
 
 .header nav a:hover {
-    color: #fff;
+    color: #ffcc00;
 }
 
 .section {
@@ -47,19 +48,19 @@ body {
 }
 
 .values h2 {
-    color: #00cc66;
+    color: #00cc6686;
 }
 
 .about h2 {
-    color: #0099cc;
+    color: #0099cc5f;
 }
 
 .problem h2 {
-    color: #cc0099;
+    color: #76145e;
 }
 
 .contact h2 {
-    color: #cc9900;
+    color: #816511;
 }
 
 .section p {
@@ -97,7 +98,12 @@ body {
     color: #fff;
     padding: 2rem;
     width: 100%;
+    height: 100%;
+    /* Cover entire image section */
     text-align: center;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .footer {
