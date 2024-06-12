@@ -1,5 +1,6 @@
 body {
-    background-color: #000;
+    background-color: #111;
+    /* Darker background closer to the image's tone */
     color: #fff;
     font-family: Arial, sans-serif;
     margin: 0;
@@ -9,7 +10,7 @@ body {
 .header {
     background: #333;
     color: #fff;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     text-align: center;
     position: fixed;
     width: 100%;
@@ -17,40 +18,48 @@ body {
     z-index: 1000;
 }
 
-.header a {
-    color: #fff;
+.header nav a {
+    color: #ccc;
     margin: 0 1rem;
     text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.header nav a:hover {
+    color: #fff;
 }
 
 .section {
-    padding: 4rem 1rem;
-    margin-top: 3rem;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
     text-align: center;
-}
-
-.home h2 {
-    color: #b0afab;
 }
 
 .mission h2 {
     color: #ff6600;
+    font-size: 2.5rem;
+    /* Larger font size for the mission heading */
+}
+
+.mission p {
+    font-size: 1.25rem;
+    /* Larger font size for the mission text */
 }
 
 .values h2 {
-    color: #0a9650;
+    color: #00cc66;
 }
 
 .about h2 {
-    color: #148db59c;
+    color: #0099cc;
 }
 
 .problem h2 {
-    color: #cc00999e;
+    color: #cc0099;
 }
 
 .contact h2 {
-    color: #a37f11;
+    color: #cc9900;
 }
 
 .section p {
@@ -69,29 +78,26 @@ body {
     padding: 1rem;
 }
 
-.image-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    color: #fff;
-}
-
 .image {
     background: url('https://raw.githubusercontent.com/Skidaway-io/skidaway-io.github.io/main/iStock-1438736329.jpg') no-repeat center center;
     background-size: cover;
-    height: 400px;
+    height: 500px;
     /* Adjust height as needed */
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    opacity: 0.5;
+    /* Less distinct image */
 }
 
-.image-text h2,
-.image-text p {
-    background: rgba(0, 0, 0, 0.5);
-    /* Semi-transparent background for better readability */
-    padding: 1rem;
+.overlay {
+    background: rgba(0, 0, 0, 0.7);
+    /* More distinct semi-transparent background for better readability */
+    color: #fff;
+    padding: 2rem;
+    width: 100%;
+    text-align: center;
 }
 
 .footer {
