@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started with TEMPO</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background-color: #121212;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #8b0000;
+        }
+        code {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Getting Started with TEMPO (Using Sample Data)</h1>
+    
+    <p>This guide will walk you through the process of setting up and using the TEMPO Native App in your Snowflake environment with provided sample data. The demo dataset simulates approximately 500 boxes on a corporate network, running for one week.</p>
+    
+    <div class="section">
+        <h2>Cost of Running Data</h2>
+        <p>[Insert cost information here]</p>
+    </div>
+    
+    <div class="section">
+        <h2>Architecture Diagram</h2>
+        <p>[Insert architecture diagram here]</p>
+    </div>
+    
+    <div class="section">
+        <h2>Step 1: Install the TEMPO Native App</h2>
+        <ol>
+            <li>Obtain the TEMPO native app from the Snowflake Marketplace.</li>
+            <li>Once installed, the app will be available for use in your Snowflake environment.</li>
+            <li>Grant the app privileges to create the required compute resources:</li>
+        </ol>
+        <pre><code>GRANT CREATE COMPUTE POOL ON ACCOUNT TO APPLICATION TEMPO;
+GRANT CREATE WAREHOUSE ON ACCOUNT TO APPLICATION TEMPO;
+GRANT EXECUTE TASK ON ACCOUNT TO APPLICATION TEMPO;
+GRANT EXECUTE MANAGED TASK ON ACCOUNT TO APPLICATION TEMPO;</code></pre>
+        <p>It's recommended to create a dedicated warehouse for the application with the following properties:</p>
+        <pre><code>CREATE WAREHOUSE &lt;YOUR_WAREHOUSE_NAME&gt; 
+WAREHOUSE_TYPE = 'SNOWPARK-OPTIMIZED' 
+WAREHOUSE_SIZE = 'LARGEMEDIUM' ; 
+
+GRANT USAGE ON WAREHOUSE &lt;YOUR_WAREHOUSE_NAME&gt; TO APPLICATION TEMPO;</code></pre>
+        <p>The application comes with its own in-house warehouse (TEMPO_WH), which will be used for container services and live inference only.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Step 2: Initialize the Application</h2>
+        <p>Call the startup procedure to initialize the app:</p>
+        <pre><code>CALL TEMPO.MANAGER.STARTUP();</code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Step 3: Grant Permissions for Sample Data Access</h2>
+        <p>Grant the TEMPO app the necessary permissions to access the sample data:</p>
+        <pre><code>GRANT USAGE ON DATABASE tempo_sample TO APPLICATION TEMPO;
+GRANT USAGE ON SCHEMA tempo_sample.inference_samples TO APPLICATION TEMPO;
+GRANT USAGE ON SCHEMA tempo_sample.training_samples TO APPLICATION TEMPO;
+GRANT SELECT ON ALL TABLES IN SCHEMA tempo_sample.inference_samples TO APPLICATION TEMPO;
+GRANT SELECT ON ALL TABLES IN SCHEMA tempo_sample.training_samples TO APPLICATION TEMPO;</code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Step 4: Perform Inference (TempoInference)</h2>
+        <p>Use the <code>TEMPOINFERENCE</code> stored procedure to perform inference on sample static log data. It takes the table's FQN (fully qualified name), a Boolean to control whether full logs or only anomalies are returned, and the log type, in this order.</p>
+        <pre><code>CALL TEMPO.DETECTION.TEMPOINFERENCE('&lt;TABLE_FQN&gt;',&lt;RETURN BOOLEAN&gt;, '&lt;LOG_TYPE&gt;');</code></pre>
+        <p>Example:</p>
+        <pre><code>CALL TEMPO.DETECTION.TEMPOINFERENCE('tempo_sample.inference_samples.workstations_inference', True, 'workstation');
+
+CALL TEMPO.DETECTION.TEMPOINFERENCE('tempo_sample.inference_samples.webservers_inference',False,'webserver');</code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Optional Step: Fine-Tuning Models</h2>
+        <p>If you need to adjust the models for better performance with your specific data patterns, you can use the fine-tuning feature. This step is optional and should be performed only if the default models don't meet your specific needs.</p>
+        
+        <h3>Step 5a: Grant Permissions for Fine-Tuning</h3>
+        <p>If you decide to fine-tune, you will be making use of the in-house compute pool with GPU access and the following configuration:</p>
+        <p>[Configuration details here]</p>
+        
+        <h3>Step 5b: Fine-Tune Models</h3>
+        <p>The ideal fine-tuning sequence based on data availability is Device before Anomaly, so that the Anomaly model can use the Device outputs. To fine-tune the models, you would execute the following queries:</p>
+        <pre><code>CALL TEMPO.FINE_TUNE.DEVICE_MODEL('&lt;SERVICE_NAME&gt;');
+CALL TEMPO.FINE_TUNE.WORKSTATION_MODEL('&lt;SERVICE_NAME&gt;');</code></pre>
+        <p>Example:</p>
+        <pre><code>CALL TEMPO.FINE_TUNE.DEVICE_MODEL('first device model fine tuning');</code></pre>
+        
+        <h3>Step 5c: Monitor Fine-Tuning Services</h3>
+        <p>Check the status of fine-tuning services:</p>
+        <pre><code>CALL SYSTEM$GET_SERVICE_STATUS('&lt;FINE_TUNE_SERVICE_NAME&gt;');</code></pre>
+        <p>Example:</p>
+        <pre><code>CALL SYSTEM$GET_SERVICE_STATUS('FINE_TUNE.sample_workstation');</code></pre>
+        <p>Note: Fine-tuning can be a time-consuming process and may incur additional computational costs. Only proceed with fine-tuning if you have specific requirements that aren't met by the default models.</p>
+    </div>
+    
+    <div class="section">
+        <h2>Step 6: Live Inference</h2>
+        
+        <h3>Step 6a: Setting Up Live Inference</h3>
+        <p>To start live inference, you need to initialize the necessary components such as streams, tasks, and live update tables. Before that, you need to allow <code>change tracking</code> on the specific table you would like live inference on:</p>
+        <pre><code>ALTER TABLE '&lt;TABLE_NAME&gt;' SET CHANGE_TRACKING = TRUE;</code></pre>
+        
+        <h3>Step 6b: Start Live Inference</h3>
+        <p>To start the live inference process, use the <code>START_LIVE_INFERENCE</code> procedure. This procedure sets up a data stream, creates a live updates table, and schedules a task that continuously monitors incoming data and applies the inference model.</p>
+        <pre><code>CALL TEMPO.LIVE_INFERENCE.START_LIVE_INFERENCE('&lt;TABLE_PATH&gt;', '&lt;MODEL_TYPE&gt;', '&lt;REFRESH_TIME&gt;');</code></pre>
+        <p>Example:</p>
+        <pre><code>CALL TEMPO.LIVE_INFERENCE.START_LIVE_INFERENCE('mydb.myschema.mytable', 'workstation', '1 M');</code></pre>
+        
+        <h3>Step 6c: Monitor, Suspend, and Resume Task</h3>
+        <p>After creating a task, the task name should be visible in the Snowflake interface.</p>
+        <ul>
+            <li>Monitoring tasks:</li>
+        </ul>
+        <pre><code>SELECT *
+FROM TABLE(INFORMATION_SCHEMA.TASK_HISTORY(
+    TASK_NAME => '&lt;Task_name&gt;'
+));</code></pre>
+        <ul>
+            <li>Suspending Task:</li>
+        </ul>
+        <pre><code>ALTER TASK &lt;Task_name&gt; SUSPEND;</code></pre>
+        <ul>
+            <li>Resuming tasks:</li>
+        </ul>
+        <pre><code>ALTER TASK &lt;Task_name&gt; RESUME;</code></pre>
+        
+        <h3>Step 6d: Shutting Down Live Inference</h3>
+        <p>When you need to stop live inference, use the <code>SHUTDOWN_LIVE_INFERENCE</code> procedure to safely terminate the process.</p>
+        <pre><code>CALL TEMPO.LIVE_INFERENCE.SHUTDOWN_LIVE_INFERENCE('&lt;TABLE_NAME&gt;');</code></pre>
+        <p>Example:</p>
+        <pre><code>CALL TEMPO.LIVE_INFERENCE.SHUTDOWN_LIVE_INFERENCE('mytable');</code></pre>
+        <p>After live inference is set up, review the results stored in the live updates table. This table will contain the incoming data along with the model's classification.</p>
+        <pre><code>SELECT * FROM TEMPO.LIVE_INFERENCE.LIVE_UPDATES_ON_&lt;TABLE_NAME&gt;;</code></pre>
+        <p>Example:</p>
+        <pre><code>SELECT * FROM TEMPO.LIVE_INFERENCE.LIVE_UPDATES_ON_mytable;</code></pre>
+    </div>
+    
+    <div class="section">
+        <h2>Additional Notes</h2>
+        <p><strong>Performance Considerations:</strong> Live inference tasks can consume significant resources. Ensure that your Snowflake environment is properly scaled to handle the workload.</p>
+        <p>This guide uses sample data provided with TEMPO. For using your own data, please refer to the custom data guide.</p>
+    </div>
+</body>
+</html>
